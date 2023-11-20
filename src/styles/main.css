@@ -1,0 +1,178 @@
+body
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #F0F7F9;
+  user-select: none;
+}
+
+.container
+{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  background: linear-gradient(0deg,  #F0F7F9 0%, #5E7DE9 50%);
+
+  padding: 40px 60px;
+  border-radius: 10px;
+}
+
+h2
+{
+  font-size: 3em;
+  color: #F0F7F9;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.reset
+{
+  padding: 15px 20px;
+  width: 100%;
+  color: #F0F7F9;
+  background-color: #5E7DE9;
+  font-size: 1.5em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+  
+  border-radius: 10px;
+  box-shadow: 8px 10px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.reset:focus
+{
+  background-color: #3B5AC6;
+  box-shadow: 4px 5px 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.viewport
+{
+  width: 430px;
+  height: 430px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  transform-style: preserve-3d;
+  perspective: 500px;
+}
+
+.item
+{
+  position: relative;
+  width: 100px;
+  height: 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 3em;
+  border-radius: 10px;
+  
+  transform: rotateY(180deg);
+  transition: 0.4s;
+
+  background-color: #fff;
+}
+
+.item::after
+{
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background-color: #404040;
+  border-radius: 10px;
+  transition: 0.4s;
+  transform: rotateY(0deg);
+  backface-visibility: hidden;
+}
+
+.item.boxOpen
+{
+  transform: rotateY(0deg);
+}
+
+.boxOpen::after,
+.boxMatch::after
+{
+  transform: rotateY(180deg);
+}
+
+.gameover
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) rotate(360deg);
+  transform-style: preserve-3d;
+
+  width: 100%;
+  text-align: center;
+  font-size: 0.2rem;
+
+  animation: gameover 0.4s linear forwards;
+
+  background-color: red;
+  padding: 1rem 2rem;
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+}
+
+@keyframes gameover {
+  
+  to
+  {
+    transform: translate(-50%, -50%) rotate(0deg);
+    font-size: 3em;
+  }
+  
+}
+
+.counter
+{
+  display: block;
+}
+
+.counter::after
+{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  content: 'Ready?';
+  color: #333;
+
+  transform: translate(-50%, -50%) rotate(0deg);
+  transform-style: preserve-3d;
+
+  font-size: 2em;
+  animation: counter 3s linear forwards;
+}
+
+@keyframes counter {
+  0%
+  {
+    content: 'Ready?';
+  }
+  60%, 100%
+  {
+    content: 'GO!';
+  }
+  
+}
+
+.remove
+{
+  display: none;
+}
